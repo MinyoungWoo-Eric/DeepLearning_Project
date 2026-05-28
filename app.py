@@ -405,53 +405,42 @@ def setup_page():
 
 
 def render_sidebar():
-    """Render the sidebar with model information and instructions."""
-    st.image(
-    "https://www.yelp.com/favicon.ico",
-    width=60,
-)
-st.markdown("## 🍽️ Yelp Review Intelligence")
+    """Render the sidebar with user-facing app information."""
+    with st.sidebar:
+        st.markdown("## 🍽️ Yelp Review Intelligence")
+        st.divider()
+
         st.markdown(
-            "This application analyzes Yelp customer reviews using two "
-            "deep-learning pipelines to support **data-driven decision-making** "
-            "for service quality monitoring."
+            "Understand any customer review in seconds — "
+            "without reading the whole thing."
         )
 
-        with st.expander("🔬 Pipeline 1 — Sentiment Analysis", expanded=False):
+        st.markdown("### What this app does")
+        st.markdown(
+            "- 😠😐😊 Detects the **overall sentiment** of a review\n"
+            "- 📝 Generates a **concise summary** of the key points\n"
+            "- ⚡ Works on reviews of any length"
+        )
+
+        st.divider()
+
+        with st.expander("📖 How to Use"):
             st.markdown(
-                "**Model:** `ex1619dd/yelp-sentiment-3class-finetuned`\n\n"
-                "A DistilBERT model fine-tuned on the Yelp Review Full dataset, "
-                "mapped to three sentiment classes: **Negative**, **Neutral**, "
-                "and **Positive**.\n\n"
-                "- Base model: `nlptown/bert-base-multilingual-uncased-sentiment`\n"
-                "- Fine-tuning: 9,000 balanced training samples (3,000/class)\n"
-                "- Evaluation: 2,000 balanced test samples"
+                "1. Select an example review from the dropdown "
+                "**or** paste your own below\n"
+                "2. Click **Analyze Review**\n"
+                "3. View the sentiment verdict and summary side by side"
             )
 
-        with st.expander("🔬 Pipeline 2 — Text Summarization", expanded=False):
+        with st.expander("💡 Who is this for?"):
             st.markdown(
-                "**Model:** `philschmid/distilbart-cnn-12-6-samsum`\n\n"
-                "A DistilBART model trained on CNN/DailyMail + SAMSum for "
-                "dialogue-style summarization.\n\n"
-                "- Beam search (num_beams=4)\n"
-                "- Post-processing: sentence-boundary truncation\n"
-                "- Long reviews (> 200 words): hierarchical chunk-then-summarize"
-            )
-
-        with st.expander("📖 How to Use", expanded=False):
-            st.markdown(
-                "1. Select an example review from the dropdown **or** paste your own.\n"
-                "2. Click **Analyze Review**.\n"
-                "3. View the sentiment prediction with confidence scores "
-                "and the auto-generated summary side by side."
+                "- **Consumers** who want a quick take before visiting\n"
+                "- **Business owners** monitoring customer feedback\n"
+                "- **Yelp editors** processing large volumes of reviews"
             )
 
         st.divider()
-        st.caption(
-            "ISOM5240 Group Project · Built with Streamlit · "
-            "Models hosted on Hugging Face 🤗"
-        )
-
+        st.caption("Powered by Yelp Review Intelligence · v1.0")
 
 def main():
     """Application entry point."""
