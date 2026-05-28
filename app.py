@@ -78,9 +78,10 @@ EXAMPLE_REVIEWS = {
         "the service. For that price point I expected a lot more."
     ),
     "🏨 Hotel Stay": (
-        "Had a great stay! Best housekeeping staff! Carol is great. Lady at check-in "
-        "could have been nicer but everyone else made up for it! Love the views. "
-        "Room service was fast and tasty. Will come back."
+        "I think the rooms need an update. I mean, for the price, they're not "
+        "spectacular. Staff were really nice though. The casino and bar/club/restaurant "
+        "choices are fine, typical Las Vegas. The lobby is beautiful but once you get "
+        "to your room it's a bit of a letdown."
     ),
 }
 
