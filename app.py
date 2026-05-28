@@ -137,15 +137,17 @@ def load_sentiment_pipeline():
         max_length=512,
     )
 
-
 @st.cache_resource(show_spinner=False)
 def load_summarization_model():
     """Load the DistilBART summarization tokenizer and model (Pipeline 2)."""
-    tokenizer = AutoTokenizer.from_pretrained(SUMMARIZATION_MODEL)
-    model = AutoModelForSeq2SeqLM.from_pretrained(SUMMARIZATION_MODEL)
-    model.eval()
-    return tokenizer, model
-
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(SUMMARIZATION_MODEL)
+        model = AutoModelForSeq2SeqLM.from_pretrained(SUMMARIZATION_MODEL)
+        model.eval()
+        return tokenizer, model
+    except Exception as e:
+        st.error(f"Failed to load summarization model: {e}")
+        raise
 
 # ────────────────────────────────────────────────────────────────────
 # Pipeline 1 – Sentiment Analysis
@@ -181,52 +183,85 @@ def analyze_sentiment(text: str) -> dict:
 # ────────────────────────────────────────────────────────────────────
 def _summarize_chunk(text: str, tokenizer, model) -> str:
     """
-    Summarize a single chunk of text using beam search.
-
-    Parameters match Pipeline2.ipynb: max_length=512, max_new_tokens=80,
-    min_length=10, num_beams=4.  Post-process to truncate at the last
-    complete sentence boundary.
+    Summarize a single text chunk using beam search.
+    Truncates output at the last complete sentence boundary.
     """
-    device = model.device
-    inputs = tokenizer(
-        text,
-        return_tensors="pt",
-        truncation=True,
-        max_length=512,
-    ).to(device)
+    if not text.strip():
+        return ""
 
-    with torch.no_grad():
-        output_ids = model.generate(
-            **inputs,
-            max_new_tokens=80,
-            min_length=10,
-            num_beams=4,
-        )
+    try:
+        inputs = tokenizer(
+            text,
+            return_tensors="pt",
+            truncation=True,
+            max_length=512,
+        ).to(model.device)
 
-    raw = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+        with torch.no_grad():
+            output_ids = model.generate(
+                **inputs,
+                max_new_tokens=80,
+                min_length=10,
+                num_beams=4,
+            )
 
-    # Truncate to last complete sentence (same logic as Pipeline2)
-    last_end = max(raw.rfind("."), raw.rfind("!"), raw.rfind("?"))
-    if last_end > 0:
-        return raw[: last_end + 1].strip()
-    return raw.strip()
+        raw = tokenizer.decode(output_ids[0], skip_special_tokens=True).strip()
+        last_end = max(raw.rfind("."), raw.rfind("!"), raw.rfind("?"))
+        return raw[:last_end + 1].strip() if last_end > 0 else raw
 
+    except Exception:
+        # Fall back to returning the first sentence of the original text
+        first = text.split(".")[0].strip()
+        return first + "." if first else text[:150]
 
+def _split_by_sentences(text: str, max_words_per_chunk: int = 100) -> list[str]:
+    """
+    Split text into chunks that respect sentence boundaries.
+    Each chunk stays under max_words_per_chunk words where possible.
+
+    Word-boundary splitting can break sentences mid-way, losing context.
+    Sentence-aware splitting keeps each chunk semantically coherent,
+    which leads to more accurate per-chunk summaries.
+    """
+    sentences = re.split(r'(?<=[.!?])\s+', text.strip())
+    chunks, current_sentences, current_count = [], [], 0
+
+    for sentence in sentences:
+        word_count = len(sentence.split())
+        if current_count + word_count > max_words_per_chunk and current_sentences:
+            chunks.append(" ".join(current_sentences))
+            current_sentences, current_count = [sentence], word_count
+        else:
+            current_sentences.append(sentence)
+            current_count += word_count
+
+    if current_sentences:
+        chunks.append(" ".join(current_sentences))
+
+    return chunks
+  
 def summarize_text(text: str) -> dict:
     """
-    Summarize *text* using the DistilBART model.
+    Summarize a Yelp review using DistilBART with sentence-aware chunking.
 
-    For short reviews (≤ 200 words) a single pass is used.
-    For longer reviews the text is split into ~100-word chunks,
-    each chunk is summarized independently, the chunk summaries are
-    concatenated and summarized again (hierarchical summarization).
+    Reviews up to 200 words are summarized in a single pass.
+    Longer reviews are split into sentence-coherent chunks, each chunk
+    summarized independently, then the combined result is summarized again
+    (hierarchical summarization).
 
-    Returns
-    -------
-    dict  {"summary": str, "word_count_original": int,
-           "word_count_summary": int, "compression": int,
-           "method": str, "runtime": float}
+    Returns a dict with summary text, word counts, compression rate,
+    method description, and inference runtime.
     """
+    if not text or not text.strip():
+        return {
+            "summary": "No input provided.",
+            "word_count_original": 0,
+            "word_count_summary": 0,
+            "compression": 0,
+            "method": "n/a",
+            "runtime": 0.0,
+        }
+
     tokenizer, model = load_summarization_model()
     words = text.split()
     word_count = len(words)
@@ -236,17 +271,11 @@ def summarize_text(text: str) -> dict:
         summary = _summarize_chunk(text, tokenizer, model)
         method = "single-pass"
     else:
-        # Hierarchical chunking (from Pipeline2 summarize_long)
-        chunk_size = 100
-        chunks = []
-        for i in range(0, len(words), chunk_size):
-            chunk = " ".join(words[i: i + chunk_size])
-            chunks.append(chunk)
-
+        chunks = _split_by_sentences(text, max_words_per_chunk=100)
         chunk_summaries = [_summarize_chunk(c, tokenizer, model) for c in chunks]
-        combined = " ".join(chunk_summaries)
+        combined = " ".join(s for s in chunk_summaries if s)
         summary = _summarize_chunk(combined, tokenizer, model)
-        method = f"chunked ({len(chunks)} chunks)"
+        method = f"sentence-chunked ({len(chunks)} chunks)"
 
     elapsed = time.time() - start
     summary_words = len(summary.split())
@@ -333,6 +362,10 @@ def render_summary_results(result: dict):
     """Display text summarization results."""
     st.markdown("### 📝 Review Summary")
 
+    if not result["summary"] or result["summary"] == "No input provided.":
+        st.warning("No summary generated — please enter a valid review.")
+        return
+
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Original Length", f"{result['word_count_original']} words")
@@ -347,7 +380,6 @@ def render_summary_results(result: dict):
         f"Method: {result['method']}  •  "
         f"Inference time: {result['runtime']:.2f}s"
     )
-
 
 # ────────────────────────────────────────────────────────────────────
 # Page Configuration & Main
