@@ -35,90 +35,52 @@ LABEL_COLOR = {"Negative": "#e74c3c", "Neutral": "#f39c12", "Positive": "#27ae60
 
 # Example reviews from the Yelp/yelp_review_full test split (seed=42)
 EXAMPLE_REVIEWS = {
-    "-- Select an example review --": "",
-    "⭐ Negative – Bad breakfast experience": (
-        "Will never come here again!!! We went there for breakfast a Saturday morning. "
-        "They took forever to take our order, bring us drink and to bring our order. "
-        "Waitress didn't know menu, she look so lost!!! when our order came back my "
-        "eggs were cold and my house potatoes burned!!! Bad experience overall."
+    "-- Select an example --": "",
+    "🥩 Steakhouse": (
+        "Wow. And this is not a good wow at all. Did NOT expect such bad food here. "
+        "My fellow diners said they had better steaks from Outback, possibly Sizzler "
+        "and Cocos. The waiters seem programmed to talk about the specials and that "
+        "is it."
     ),
-    "⭐ Negative – Disappointing hotel stay": (
-        "Stayed here recently for a conference. Check-in took forever. Nearly every "
-        "person in line had a problem, everything from inaccurate quotes from the "
-        "website, to unexpected room charges to who knows what.\n\nThe rooms are nice, "
-        "full-wall windows, and bathrooms are absolutely huge. Though not that "
-        "soundproofed, I could hear all sorts of activity from the hallway.\n\nFor a "
-        "resort/spa hotel I really expected them to filter the water. Vegas is a desert "
-        "and the water here is overly chlorinated, which means it's not that refreshing "
-        "and very drying to the skin, which only exacerbates the dryness of the desert."
-        "\n\nThe food was good and the buffet is a great deal, except for the overpriced "
-        "Sunday brunch.\n\nThe casino area is nice, though it could use some more "
-        "smoke-eaters and again, there's the smell of chlorine from the waterworks.\n\n"
-        "The acoustics aren't the best, the sound gets totally lost in the registration "
-        "area. And the wind literally howls through the complex, especially noticable "
-        "in the meeting rooms with patios, the wind forcing through gaps in the glass "
-        "doors.\n\nIf you do book a conference here be very aware that nearly anything "
-        "you'd want is an extra charge, and often ridiculously so (ie $2000/day for "
-        "wifi per room).\n\nYou can do just about everything here, see a movie, gamble, "
-        "go bowling, work out, eat, shop, spa, swim, golf, and of course, convene."
+    "🍕 Pizza & Wings": (
+        "Came here because they have a whole vegan menu but also regular pizza as well "
+        "which is perfect because I am vegan and my boyfriend isn't. We came during "
+        "happy hour so he got half off wings and then a pizza. Everything was delicious "
+        "and the staff were super friendly. Would definitely come back."
     ),
-    "⭐⭐⭐ Neutral – Mixed feelings about resort": (
-        "My boyfriend said he would give The Boulders 5 stars, I thought it was more "
-        "like 3 and since I'm writing the review, it's getting 3.\n\nUpon checking in, "
-        "I was told that we would be given a room with two double beds. Say what?? I "
-        "specifically requested a king sized bed - it was supposed to be a \"romantic\" "
-        "getaway after all. I wanted it to be romantic, but my boyfriend just wanted to "
-        "golf. That pretty much sums it up. Anyway, they quickly fixed the problem and "
-        "gave us a casita with a king sized bed and a fireplace. The casita was really "
-        "cute and was clean and comfortable. The grounds are beautiful and the pool area "
-        "was nice. We ate at the Palo Verde restaurant and both thought it was just ok. "
-        "The food wasn't bad, just not memorable. The service on the other hand was "
-        "excellent.\n\nI would not necessarily go back to The Boulders. It was fine, "
-        "but nothing extraordinary."
+    "🍣 Sushi Bar": (
+        "BAD! But that's what we get for straying away from our favorite sushi spot. "
+        "We walked into Sushi Fever about 40 minutes before they were due to close "
+        "and they made us feel extremely unwelcome. The fish was not fresh and the "
+        "service was dismissive. Save your money and go somewhere else."
     ),
-    "⭐⭐⭐ Neutral – Average food, decent price": (
-        "I dig Hanlon's. I love that pretty much all of their dishes come with a side "
-        "and the price is right. Everything on their menu sounds delish and it takes a "
-        "little while for me to decide. For any hoagie, you can make it a wrap at no "
-        "extra charge. I usually order the buffalo chicken wrap & its fabb!! The chicken "
-        "is always tender and the wrap is stuffed with flavor. Only downside is parking "
-        "can be tricky during lunch rush."
+    "🌯 Casual Diner": (
+        "This is a great place to eat and hang out with friends. I always get the "
+        "pretzel appetizer and the angry chicken sandwich. When I am eating them, "
+        "I believe there is nothing better I could be eating at that moment. "
+        "The staff are friendly and the prices are very reasonable."
     ),
-    "⭐⭐⭐⭐⭐ Positive – Best meal in years": (
-        "Absolutely fantastic! Best meal I've had in years. The steak was cooked to "
-        "perfection, the sides were fresh and flavorful, and the dessert was heavenly. "
-        "Our server was attentive without being overbearing, and the ambiance was warm "
-        "and inviting. We celebrated our anniversary here and it was worth every penny. "
-        "The wine list is extensive and reasonably priced. I've already recommended this "
-        "place to all my friends. If you're looking for a truly special dining "
-        "experience, look no further. Five stars without hesitation!"
+    "🍔 Burger Joint": (
+        "This was our best meal in Vegas and the cheapest. Sweet potato fries were "
+        "amazing and we loved all the different ketchups to try. The hamburgers were "
+        "huge and amazing. We will be going back."
     ),
-    "⭐⭐⭐⭐⭐ Positive – Outstanding sushi spot": (
-        "Hidden gem! This tiny sushi spot on the corner has the freshest fish in town. "
-        "The chef is a master — each piece of nigiri is a work of art. The omakase "
-        "experience is incredible value for what you get. We had the 12-piece set with "
-        "miso soup and it was divine. The tuna melted in my mouth and the uni was "
-        "buttery perfection. Staff are so friendly and the atmosphere is cozy and "
-        "authentic. We've been coming back every week since we discovered it. Highly "
-        "recommend making a reservation as it fills up fast."
+    "🥗 Breakfast Spot": (
+        "This hidden gem is my new favorite breakfast spot! The staff is SO friendly, "
+        "and their menu has the right balance of unique choices along with the classics. "
+        "They make everything from scratch and try to source local ingredients when "
+        "possible. The portions are generous and the prices are very fair."
     ),
-    "⭐⭐⭐⭐⭐ Positive – Amazing pizza place": (
-        "I'm from New York, so I know good pizza. This place rivals the best in NYC, "
-        "and that's saying something. The crust is thin, crispy, and perfectly charred. "
-        "The sauce is tangy and fresh. The mozzarella is top quality. We ordered the "
-        "Margherita and the white pizza with truffle oil. Both were phenomenal. The "
-        "garlic knots are also a must-try — they come out piping hot with just the "
-        "right amount of garlic butter. Prices are super reasonable for the quality. "
-        "The only downside is the wait — it gets packed on weekends. But honestly, "
-        "it's worth every minute of the wait. This is now our go-to pizza spot."
+    "🍽️ Fine Dining": (
+        "I know I will upset some fellow Yelp friends with this review, but the "
+        "Ruth Chris on Camelback was a big disappointment for me. I went with a friend "
+        "who is a huge fan of Ruth Chris, but I was let down by both the food and "
+        "the service. For that price point I expected a lot more."
     ),
-    "⭐ Negative – Terrible customer service": (
-        "Worst customer service I have ever experienced. I placed an order online and "
-        "it never arrived. When I called, I was put on hold for 45 minutes. The manager "
-        "was rude and dismissive, offering no solution. I asked for a refund and was "
-        "told it would take 10 business days. It's been three weeks and still no "
-        "refund. I've filed a complaint with my credit card company. Do not waste your "
-        "time or money here. They clearly don't care about their customers."
+    "🏨 Hotel Stay": (
+        "Had a great stay! Best housekeeping staff! Carol is great. Lady at check-in "
+        "could have been nicer but everyone else made up for it! Love the views. "
+        "Room service was fast and tasty. Will come back."
     ),
 }
 
