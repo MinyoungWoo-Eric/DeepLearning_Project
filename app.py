@@ -406,13 +406,11 @@ def setup_page():
 
 def render_sidebar():
     """Render the sidebar with model information and instructions."""
-    with st.sidebar:
-        st.image(
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/"
-            "Yelp_Logo.svg/512px-Yelp_Logo.svg.png",
-            width=150,
-        )
-        st.markdown("## About This App")
+    st.image(
+    "https://www.yelp.com/favicon.ico",
+    width=60,
+)
+st.markdown("## 🍽️ Yelp Review Intelligence")
         st.markdown(
             "This application analyzes Yelp customer reviews using two "
             "deep-learning pipelines to support **data-driven decision-making** "
