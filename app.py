@@ -10,8 +10,6 @@ Models:
   - Sentiment: ex1619dd/yelp-sentiment-3class-finetuned (Hugging Face)
   - Summarization: philschmid/distilbart-cnn-12-6-samsum (Hugging Face)
 
-Author : Group XX – ISOM5240
-Date   : 2025
 """
 
 import re
@@ -300,7 +298,7 @@ def summarize_text(text: str) -> dict:
 # ────────────────────────────────────────────────────────────────────
 # UI Helpers
 # ────────────────────────────────────────────────────────────────────
-def render_sentiment_results(result: dict):
+def render_sentiment_results(result: dict, text: str = ""):
     """Display sentiment analysis results with visual indicators."""
     label = result["label"]
     score = result["score"]
@@ -510,7 +508,7 @@ def main():
         with col_sent:
             with st.spinner("Running sentiment analysis…"):
                 sentiment_result = analyze_sentiment(review_text)
-            render_sentiment_results(sentiment_result)
+            render_sentiment_results(sentiment_result,review_text)
 
         # Run Pipeline 2
         with col_summ:
