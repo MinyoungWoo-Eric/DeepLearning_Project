@@ -340,7 +340,7 @@ def render_sentiment_results(result: dict, text: str = ""):
             f"""
             <div style="background:#f8f9fa;border-left:4px solid #9b59b6;
                         padding:16px;border-radius:8px;">
-                <div style="font-size:0.85rem;color:#666;">Inference Time</div>
+                <div style="font-size:0.85rem;color:#666;">Review Length</div>
                 <div style="font-size:1.6rem;font-weight:700;color:#2c3e50;">
                     {len(text.split())} words
                 </div>
