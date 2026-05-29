@@ -37,52 +37,94 @@ LABEL_COLOR = {"Negative": "#e74c3c", "Neutral": "#f39c12", "Positive": "#27ae60
 # Example reviews from the Yelp/yelp_review_full test split (seed=42)
 EXAMPLE_REVIEWS = {
     "-- Select an example --": "",
-    "🥩 Steakhouse": (
-        "Wow. And this is not a good wow at all. Did NOT expect such bad food here. "
-        "My fellow diners said they had better steaks from Outback, possibly Sizzler "
-        "and Cocos. The waiters seem programmed to talk about the specials and that "
-        "is it."
+    "🥩 Steakhouse (Vegas)": (
+        "Wow. And this is not a good wow at all.\n\n"
+        "Did NOT expect such bad food here. My fellow diners said they had better steaks "
+        "from Outback, possibly Sizzler and Cocos.\n\n"
+        "The waiters seem programmed to try to upsell everything. The only \"amazing\" "
+        "food on the menu from the kitchen are the highest priced items.\n\n"
+        "Considering how much amazing food is available in Vegas, this place sucks. "
+        "The various managers are completely useless. There seems to be too many staff "
+        "running around pretending to be busy than actually working. None of them went "
+        "up to any tables to inquire about the food or service.\n\n"
+        "Now, onto the food. Again, WOW. It was beyond awful -- once it actually came out. "
+        "Apparently our ticket got dropped TWICE by the kitchen. And did any manager "
+        "come out to apologize? That'd be a no.\n\n"
+        "The waiter and his trainee were so sweet and trying to help out, but honestly, "
+        "what else can they do? Final report: More style than substance."
     ),
-    "🍕 Pizza & Wings": (
-        "Came here because they have a whole vegan menu but also regular pizza as well "
-        "which is perfect because I am vegan and my boyfriend isn't. We came during "
-        "happy hour so he got half off wings and then a pizza. Everything was delicious "
-        "and the staff were super friendly. Would definitely come back."
+    "🍺 Sports Bar": (
+        "A shi-shi sports bar with an appetizing menu executed in a very average manner.\n\n"
+        "The current tenants have stuck with the existing deep red on black decor and "
+        "subdued lighting. Very Victorian. Being a sports bar, of course there are "
+        "wide-screens all over the shop, which seem a bit anachronistic given that "
+        "the place is swathed in late 19th-century red velvet drapery.\n\n"
+        "The owners have placed a few old-fashioned items on the menu, such as baked brie, "
+        "juxtaposed with more modern tasters like deep-fried mashed potato bites. "
+        "The menu is fairly enticing. Sadly the food falls short. Everything here is made "
+        "to sound impressive, but looks and tastes like it was cooked at Wendy's.\n\n"
+        "Today I tried the Chicken Florentine Soup. It definitely came from a can. "
+        "Then I got a California Turkey Burger. The lettuce was limp, the avocado was "
+        "almost non-existent, and the turkey patty was too salty.\n\n"
+        "My advice: if you're going to do gourmet pub food, actually do gourmet pub food."
     ),
-    "🍣 Sushi Bar": (
-        "BAD! But that's what we get for straying away from our favorite sushi spot. "
-        "We walked into Sushi Fever about 40 minutes before they were due to close "
-        "and they made us feel extremely unwelcome. The fish was not fresh and the "
-        "service was dismissive. Save your money and go somewhere else."
+    "🎰 Nightclub (Vegas)": (
+        "My first 21+ clubbing experience! I turned 21 on Monday, so we decided to hit "
+        "up XS on a Sunday night, right before 12. It was literally 11:50pm and the guy "
+        "wouldn't even let me through the door to wait in the second line. We were in a "
+        "group of 12, and they had us wait on the side until it was midnight. They were "
+        "also pretty rude, even though we were nothing but polite.\n\n"
+        "Once we got in, it was hella cold so the outdoor area was a no-go. "
+        "Disgustingly packed inside -- like a rave. The dancefloor was just a swaying, "
+        "smelly mosh pit.\n\n"
+        "All our girls got free drink cards, but it took forever to get to the bar. "
+        "I think my bartender forgot to put Midori in my Midori sour -- I didn't taste "
+        "any alcohol at all.\n\n"
+        "I'm glad I got in for free, or I'd be so disappointed. People barfing along "
+        "the walkway and a fight broke out right as we were leaving. Real classy."
     ),
-    "🌯 Casual Diner": (
-        "This is a great place to eat and hang out with friends. I always get the "
-        "pretzel appetizer and the angry chicken sandwich. When I am eating them, "
-        "I believe there is nothing better I could be eating at that moment. "
-        "The staff are friendly and the prices are very reasonable."
+    "🥪 Sandwich Diner (Pittsburgh)": (
+        "Had to visit the \"Famous\" Primanti Brother's Bar and Grill during my first "
+        "visit to Pittsburgh, but most likely will only go back if my friends/family "
+        "really want to eat there.\n\n"
+        "Food: The portions are huge, not very greasy, served nice and hot but overall "
+        "very bland. The fries were limp and had no seasoning whatsoever. Put everything "
+        "together between two slices of white bread and it made for a bland pile of "
+        "flavorless starch.\n\n"
+        "Price: For the size of the portions you get, the price is great. I got two "
+        "sandwiches and a soda for about $16 -- good value since you will definitely "
+        "leave full.\n\n"
+        "Staff: During my visit, the staff was great. The waitress was attentive and "
+        "friendly. The cook also thanked me for patronizing there while I was leaving.\n\n"
+        "Overall, I basically came here just to say that I visited a famous Pittsburgh "
+        "restaurant, but I most likely will not go again. The blandness of the food "
+        "is what kills it for me."
     ),
-    "🍔 Burger Joint": (
-        "This was our best meal in Vegas and the cheapest. Sweet potato fries were "
-        "amazing and we loved all the different ketchups to try. The hamburgers were "
-        "huge and amazing. We will be going back."
-    ),
-    "🥗 Breakfast Spot": (
-        "This hidden gem is my new favorite breakfast spot! The staff is SO friendly, "
-        "and their menu has the right balance of unique choices along with the classics. "
-        "They make everything from scratch and try to source local ingredients when "
-        "possible. The portions are generous and the prices are very fair."
-    ),
-    "🍽️ Fine Dining": (
+    "🥩 Fine Dining (Phoenix)": (
         "I know I will upset some fellow Yelp friends with this review, but the "
-        "Ruth Chris on Camelback was a big disappointment for me. I went with a friend "
-        "who is a huge fan of Ruth Chris, but I was let down by both the food and "
-        "the service. For that price point I expected a lot more."
+        "Ruth Chris on Camelback was a big disappointment for me.\n\n"
+        "Atmosphere: This location makes a better Chili's than Ruth Chris. The setup "
+        "is very awkward and having to leave the restaurant to use the bathroom in the "
+        "lobby is not very high end.\n\n"
+        "Food: The steak quality was very good, but I have had many more filets elsewhere "
+        "that have given me much more flavor. My filet was served in a pool of butter. "
+        "The sides are very average.\n\n"
+        "Service: This is the only thing worthy of mentioning. Devin at the bar served "
+        "us and he was 5 stars plus. Great service and great Martinis. "
+        "Devin saved Ruth Chris from getting 2 stars."
     ),
-    "🏨 Hotel Stay": (
-        "I think the rooms need an update. I mean, for the price, they're not "
-        "spectacular. Staff were really nice though. The casino and bar/club/restaurant "
-        "choices are fine, typical Las Vegas. The lobby is beautiful but once you get "
-        "to your room it's a bit of a letdown."
+    "🌮 Mexican Restaurant": (
+        "We've been by this place a number of times since we live right by it and we "
+        "finally decided to try it. I ordered some chicken and beef tacos, tostadas, "
+        "a cheese quesadilla, chips/salsa, and flan to go.\n\n"
+        "The meat was great! Everyone agreed that the tacos were better than the tostadas. "
+        "The kids tore through the quesadilla so I'm assuming it was pretty good. "
+        "The chips and salsa were very good. They also give you a salsa bar to select "
+        "different kinds of salsa -- we found them all to be very tasty.\n\n"
+        "The only issue: they forgot the flan but charged us for it. I was really looking "
+        "forward to trying it. Despite that, I decided to give it a 4. I really liked "
+        "the flavor of the meat and will probably return for more tacos. "
+        "If you get takeout, give your bag a couple of extra checks before leaving."
     ),
 }
 
