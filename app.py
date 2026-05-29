@@ -383,7 +383,7 @@ def render_summary_results(result: dict):
     st.info(result["summary"])
 
     st.caption(
-        f"Method: {result['method']}  •  "
+        f"⚠️ AI-generated summary — may not capture every detail  •   "
         f"Inference time: {result['runtime']:.2f}s"
     )
 
