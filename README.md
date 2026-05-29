@@ -13,6 +13,15 @@ A Streamlit web application that analyzes Yelp customer reviews using two comple
 | Pipeline 1 | 3-class Sentiment Analysis (Negative / Neutral / Positive) | Fine-tuned DistilBERT |
 | Pipeline 2 | Extractive-Abstractive Summarization | DistilBART-CNN-SAMSum |
 
+Paste any Yelp review and instantly get:
+
+- 😠😐😊 **Overall sentiment** — Negative, Neutral, or Positive with confidence score
+- 📝 **Auto-generated summary** — key points extracted without reading the full review
+
+Useful for consumers who want a quick take, business owners monitoring feedback, or anyone processing large volumes of reviews.
+
+---
+
 **Why both?**
 Sentiment alone tells you *how* a customer feels. The summary tells you *why*. Together they give a complete, actionable picture of any review — without reading the whole thing.
 
