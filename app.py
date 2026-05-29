@@ -3,7 +3,7 @@ Yelp Review Intelligence Dashboard
 ===================================
 A Streamlit application that combines two NLP pipelines to analyze
 Yelp customer reviews:
-  - Pipeline 1: Sentiment Analysis (fine-tuned DistilBERT, 3-class)
+  - Pipeline 1: Sentiment Analysis (fine-tuned BERT-base model, 3-class)
   - Pipeline 2: Text Summarization (DistilBART-CNN-samsum with chunking)
 
 Models:
